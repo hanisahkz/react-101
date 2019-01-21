@@ -4,7 +4,7 @@ import React from "react";
 const person = props => {
   return (
     <div>
-      <p>
+      <p onClick={props.click}>
         I'm {props.name} from {props.origin}.
       </p>
       <div>{props.children}</div>

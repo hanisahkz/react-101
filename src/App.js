@@ -3,15 +3,33 @@ import "./App.css";
 import Person from "./Person/Person";
 
 class App extends Component {
+  state = {
+    persons: [
+      { id: 1, name: "Lisa", origin: 33 },
+      { id: 2, name: "Jonah", origin: 233 },
+      { id: 3, name: "Koko", origin: 112 }
+    ]
+  };
+
+  updateNameHandler = () => {
+    this.setState({
+      persons: [
+        { id: 1, name: "Lisa", origin: 33 },
+        { id: 2, name: "Jonathan", origin: 233 },
+        { id: 3, name: "Koko Hekmatyar", origin: 112 }
+      ]
+    });
+  };
+
   render() {
-    /* jshint ignore:start */
     return (
       <div className="App">
         <h1>React 101</h1>
         <div>
+          <button onClick={this.updateNameHandler}>Click to Update!</button>
           <Person
-            name="Lisa"
-            origin={window.crypto.getRandomValues(new Uint32Array(1))[0]}
+            name={this.state.persons[0].name}
+            origin={this.state.persons[0].origin}
           >
             <span>I'm a customized content. </span>
             <span>How many of me can be passed? </span>
@@ -19,17 +37,17 @@ class App extends Component {
             <span>Apparently not. </span>
           </Person>
           <Person
-            name="Jonah"
-            origin={window.crypto.getRandomValues(new Uint32Array(1))[0]}
+            click={this.updateNameHandler}
+            name={this.state.persons[1].name}
+            origin={this.state.persons[1].origin}
           />
           <Person
-            name="Koko"
-            origin={window.crypto.getRandomValues(new Uint32Array(1))[0]}
+            name={this.state.persons[2].name}
+            origin={this.state.persons[2].origin}
           />
         </div>
       </div>
     );
-    /* jshint ignore:end */
   }
 }
 
