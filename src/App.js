@@ -48,7 +48,6 @@ class App extends Component {
 
           {/* Putting change event trigger here to observe the impact of placing the triggerer */}
           <Person
-            changedName={this.changeNameHandler}
             name={this.state.persons[0].name}
             origin={this.state.persons[0].origin}
           >
