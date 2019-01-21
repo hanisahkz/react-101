@@ -8,6 +8,7 @@ const person = props => {
         I'm {props.name} from {props.origin}.
       </p>
       <div>{props.children}</div>
+      <input type="text" onChange={props.changedName} value={props.name} />
     </div>
   );
 };

@@ -11,12 +11,24 @@ class App extends Component {
     ]
   };
 
-  updateNameHandler = (newName) => {
+  updateNameHandler = newName => {
     this.setState({
       persons: [
         { id: 1, name: newName, origin: 33 },
         { id: 2, name: "Jonathan", origin: 233 },
         { id: 3, name: "Koko Hekmatyar", origin: 112 }
+      ]
+    });
+  };
+
+  // this method accepts event object
+  // perhaps, this is tied to Form HTML element that's always expecting an event object ?
+  changeNameHandler = event => {
+    this.setState({
+      persons: [
+        { id: 1, name: "Lisa", origin: 33 },
+        { id: 2, name: "Jonathan", origin: 233 },
+        { id: 3, name: event.target.value, origin: 112 }
       ]
     });
   };
@@ -30,11 +42,13 @@ class App extends Component {
           {/* In fact, React wouldn't event render this */}
           {/* <button onClick={this.updateNameHandler()}>Click to Update!</button> */}
 
-          <button onClick={() => this.updateNameHandler("Wiley")}>Click to Update!</button>
+          <button onClick={() => this.updateNameHandler("Wiley")}>
+            Click to Update!
+          </button>
 
-          {/* This doesn't get executed immediately. This style of writing has implicit "return" due to "()" */}
-          {/* Alternatively, it to make it multiline, it can be written: onClick={() => {return this.updateNameHandler("Lisard!")} */}
+          {/* Putting change event trigger here to observe the impact of placing the triggerer */}
           <Person
+            changedName={this.changeNameHandler}
             name={this.state.persons[0].name}
             origin={this.state.persons[0].origin}
           >
@@ -43,6 +57,9 @@ class App extends Component {
             <span>Is it limited to only 1? </span>
             <span>Apparently not. </span>
           </Person>
+
+          {/* This doesn't get executed immediately. This style of writing has implicit "return" due to "()" */}
+          {/* Alternatively, it to make it multiline, it can be written: onClick={() => {return this.updateNameHandler("Lisard!")} */}
           {/* This is the most preferred way of passing params. Use bind */}
           <Person
             click={this.updateNameHandler.bind(this, "Jonah")}
@@ -50,6 +67,7 @@ class App extends Component {
             origin={this.state.persons[1].origin}
           />
           <Person
+          changedName={this.changeNameHandler}
             name={this.state.persons[2].name}
             origin={this.state.persons[2].origin}
           />
