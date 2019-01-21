@@ -34,6 +34,14 @@ class App extends Component {
   };
 
   render() {
+    const style = {
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer"
+    };
+
     return (
       <div className="App">
         <h1>React 101</h1>
@@ -42,7 +50,7 @@ class App extends Component {
           {/* In fact, React wouldn't event render this */}
           {/* <button onClick={this.updateNameHandler()}>Click to Update!</button> */}
 
-          <button onClick={() => this.updateNameHandler("Wiley")}>
+          <button style={style} onClick={() => this.updateNameHandler("Wiley")}>
             Click to Update!
           </button>
 
@@ -66,7 +74,7 @@ class App extends Component {
             origin={this.state.persons[1].origin}
           />
           <Person
-          changedName={this.changeNameHandler}
+            changedName={this.changeNameHandler}
             name={this.state.persons[2].name}
             origin={this.state.persons[2].origin}
           />
